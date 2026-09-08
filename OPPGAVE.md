@@ -142,8 +142,7 @@ Det er sikkert mye annet jeg ikke kommer på...
 
 ```go
 type HappeningWithRegistrationCount struct {
-  ID 								string
-  Slug 						  string
+  Slug              string
   RegistrationCount int
 }
 ```
