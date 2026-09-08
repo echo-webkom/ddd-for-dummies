@@ -8,7 +8,7 @@ git clone https://github.com/echo-webkom/ddd-for-dummies.git
 cd ddd-for-dummies
 
 # Skjekke at Go funker
-go run .
+go run cmd/main.go
 ```
 
 ## Hva er Domain Driven Design?
