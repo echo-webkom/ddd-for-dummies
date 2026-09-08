@@ -27,15 +27,23 @@ Domenet definerer ulike `ports`. Dette er bare et `interface` som sier hvordan t
 // Fil /domain/port/hotel.go
 package port
 
-type Hotel struct {
-	// ...
-}
-
 // Sier hvilke metoder som domenet trenger for å fikse booking.
 // Bryr seg ikke om hvordan dette faktisk er implementert.
 type HotelBooker interface {
 	GetAvailable() ([]Hotel, error)
 	Book(hotelID string) error
+}
+```
+
+```go
+// Fil /domain/model/hotel.go
+package model
+
+type Hotel struct {
+	ID 	  string
+	Name  string
+	Price int
+	// ...
 }
 ```
 
@@ -134,6 +142,20 @@ Diagram av eksempelet som har blitt gått gjennom:
 
 ## Struktur
 
-## Eksempel
+Dette er mappestrukturen til eksempelet:
 
-## Hva du skal lage
+```
+/adapter
+  /http
+    hotel.go
+/domain
+  /port
+    hotel.go
+  /model
+    hotel.go
+  /service
+    hotel.go
+/infra
+  /strawberry
+    hotel.go
+```
