@@ -15,6 +15,12 @@ go run cmd/main.go
 
 Domain Driven Design (DDD) er en slags arkitektur/paradigme. Det går ut på å dele opp applikasjonen din i tre hoveddeler; domene, infrastruktur, og adaptere. DDD er veldig godt egnet for store applikasjoner ettersom det gjør ting lett å vedlikeholde, oppdatere, og utvikle.
 
+Appen er delt opp i tre hoveddeler:
+
+- Adapter
+- Domene
+- Infrastruktur
+
 ### Domene
 
 Domenet er kjernen av applikasjonen. Du kan tenke på det som en komponist, du vet hvordan musikken skal høres ut, og du er ansvarlig for å deligere ulike deler av stykket til de som spiller instrumentene. Du kan ikke spille noen instrumenter selv, og du vet ikke hvem som spiller dem.
@@ -98,7 +104,7 @@ func (h *hotelBooker) Book(id string) (error) {
 }
 ```
 
-Nå kan du begynne å se fordelene med DDD. Om vi i fremtiden velger å gå vekk fra Strawberry og heller vil bruke Hotels.com eller vår egen tjeneste vil det fungere bare kreve å implementere `HotelBooker` interfacet og resten av appen vil funke som før.
+Nå kan du begynne å se fordelene med DDD. Om vi i fremtiden velger å gå vekk fra Strawberry og heller vil bruke Hotels.com eller vår egen tjeneste vil det bare kreve å implementere `HotelBooker` interfacet. Utenom det vil resten av appen funke som før.
 
 På denne måten skiller DDD implementasjon og logikk. Appen bryr seg ikke hvilken underliggende tjeneste som brukes for å hente/booke hoteller, den vet bare hvilke metoder den trenger, og opererer på disse.
 
@@ -106,7 +112,7 @@ På denne måten skiller DDD implementasjon og logikk. Appen bryr seg ikke hvilk
 
 Så var er da adapter laget? Det er egentlig veldig enkelt; det er koden som kaller på domenelogikk.
 
-Grunnen til at det er et eget lag er fordi du kan ha flere adaptere for samme app (flere måter å bruke samme domenelogikk på). Booking-appen vår kan for eksempel være et API, GUI, TUI, eller noe helt annet. En adapter er bare måten du interagerer med koden.
+Grunnen til at det er et eget lag er fordi du kan ha flere adaptere for samme app (flere måter å bruke samme domenelogikk på). Booking-appen vår kan for eksempel være et API, GUI, TUI, eller noe helt annet. En adapter er bare måten du interagerer med koden på.
 
 For booking-appen vår lager vi et enkelt API:
 
@@ -130,7 +136,7 @@ func (h *hotelMux) handleHotelBooking(request *http.Request, response http.Respo
 		return err
 	}
 
-	return writeJsonResposne(hotel, response)
+	return writeJsonResponse(hotel, response)
 }
 ```
 
@@ -159,3 +165,7 @@ Dette er mappestrukturen til eksempelet:
   /strawberry
     hotel.go
 ```
+
+## Oppgave
+
+Du kan gå videre til [denne oppgaven](./OPPGAVE.md) for å implementere et liknende API fra bunnen av.
