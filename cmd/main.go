@@ -1,9 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"ddd-for-dummies/adapter/http"
+	"ddd-for-dummies/domain/service"
+	"ddd-for-dummies/infra/hotelapi"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	hotelRepo := hotelapi.NewHotelRepo()
+	hotelSercice := service.NewHotelService(hotelRepo)
+
+	http.RunServer(hotelSercice)
 }
